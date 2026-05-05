@@ -3,136 +3,162 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Drive Dashboard</title>
+<title>All Yt Channels DP</title>
 
 <style>
-    body {
-        margin: 0;
-        font-family: 'Segoe UI', sans-serif;
-        background: #0d0d0d;
-        color: #fff;
-    }
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #0d0d0d;
+    color: #fff;
+}
 
-    header {
-        padding: 20px;
-        background: linear-gradient(135deg, #1f1f1f, #121212);
-        box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-        text-align: center;
-    }
+/* HEADER */
+header {
+    padding: 20px;
+    text-align: center;
+    background: linear-gradient(135deg, #1f1f1f, #121212);
+}
 
-    header h1 {
-        margin: 0;
-        font-size: 28px;
-        letter-spacing: 1px;
-    }
+header h1 {
+    margin: 0;
+    font-size: 28px;
+}
 
-    .container {
-        padding: 20px;
-    }
+/* SEARCH */
+.search-box {
+    text-align: center;
+    margin: 20px;
+}
 
-    .dashboard {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 20px;
-        margin-bottom: 20px;
-    }
+.search-box input {
+    width: 60%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    background: #1a1a1a;
+    color: #fff;
+}
 
-    .card {
-        background: #1a1a1a;
-        padding: 20px;
-        border-radius: 12px;
-        box-shadow: 0 0 15px rgba(0,0,0,0.5);
-        transition: 0.3s;
-    }
+/* GRID */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
 
-    .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 0 25px rgba(0,255,255,0.2);
-    }
+/* CARD */
+.card {
+    background: #1a1a1a;
+    border-radius: 12px;
+    overflow: hidden;
+    text-align: center;
+    transition: 0.3s;
+}
 
-    .card h2 {
-        margin: 0;
-        font-size: 22px;
-    }
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(0,255,255,0.2);
+}
 
-    .card p {
-        opacity: 0.7;
-    }
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
 
-    iframe {
-        width: 100%;
-        height: 600px;
-        border: none;
-        border-radius: 12px;
-        box-shadow: 0 0 20px rgba(0,0,0,0.6);
-    }
+/* BUTTON */
+.download-btn {
+    display: block;
+    padding: 10px;
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
+    color: white;
+    text-decoration: none;
+    margin: 10px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
 
-    .btn {
-        display: inline-block;
-        padding: 12px 20px;
-        background: linear-gradient(45deg, #00c6ff, #0072ff);
-        color: white;
-        border-radius: 8px;
-        text-decoration: none;
-        margin-top: 20px;
-        transition: 0.3s;
-    }
+.download-btn:hover {
+    transform: scale(1.05);
+}
 
-    .btn:hover {
-        background: linear-gradient(45deg, #00ffcc, #0066ff);
-        transform: scale(1.05);
-    }
-
-    footer {
-        text-align: center;
-        padding: 15px;
-        font-size: 14px;
-        opacity: 0.6;
-    }
+/* HIDE */
+.hidden {
+    display: none;
+}
 </style>
 </head>
 
 <body>
 
 <header>
-    <h1>📂 Google Drive Dashboard</h1>
+    <h1>All Yt Channels DP</h1>
 </header>
 
-<div class="container">
-
-    <!-- Stats Cards -->
-    <div class="dashboard">
-        <div class="card">
-            <h2>📁 Files</h2>
-            <p>Access all uploaded files</p>
-        </div>
-
-        <div class="card">
-            <h2>📊 Dashboard</h2>
-            <p>Visual file overview</p>
-        </div>
-
-        <div class="card">
-            <h2>⚡ Fast Access</h2>
-            <p>Quick open & preview</p>
-        </div>
-    </div>
-
-    <!-- Embedded Drive -->
-    <iframe src="https://drive.google.com/embeddedfolderview?id=15JsI_mhkcPdNZbP9aumaCBSJTxXicSf4#grid"></iframe>
-
-    <!-- Download Button -->
-    <center>
-        <a class="btn" href="https://drive.google.com/drive/folders/15JsI_mhkcPdNZbP9aumaCBSJTxXicSf4" target="_blank">
-            ⬇ Open / Download Files
-        </a>
-    </center>
-
+<!-- SEARCH -->
+<div class="search-box">
+    <input type="text" id="search" placeholder="Search images..." onkeyup="searchImages()">
 </div>
 
-<footer>
-    Made with ❤️ | Dark Dashboard UI
-</footer>
+<!-- GALLERY -->
+<div class="gallery" id="gallery"></div>
+
+<script>
+const folderId = "15JsI_mhkcPdNZbP9aumaCBSJTxXicSf4";
+
+/*
+NOTE:
+Google Drive direct image listing API requires authentication.
+So here we manually define images OR you can paste file IDs below.
+*/
+
+// 🔥 ADD YOUR IMAGE FILE IDS HERE
+const images = [
+    {name: "DP 1", id: "FILE_ID_1"},
+    {name: "DP 2", id: "FILE_ID_2"},
+    {name: "DP 3", id: "FILE_ID_3"}
+];
+
+// Render images
+function loadImages() {
+    const gallery = document.getElementById("gallery");
+    gallery.innerHTML = "";
+
+    images.forEach(img => {
+        const imageUrl = `https://drive.google.com/uc?export=view&id=${img.id}`;
+        const downloadUrl = `https://drive.google.com/uc?export=download&id=${img.id}`;
+
+        const card = `
+        <div class="card" data-name="${img.name.toLowerCase()}">
+            <img src="${imageUrl}" alt="${img.name}">
+            <a class="download-btn" href="${downloadUrl}">⬇ Download</a>
+        </div>
+        `;
+
+        gallery.innerHTML += card;
+    });
+}
+
+// Search function
+function searchImages() {
+    const input = document.getElementById("search").value.toLowerCase();
+    const cards = document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+        const name = card.getAttribute("data-name");
+        if (name.includes(input)) {
+            card.classList.remove("hidden");
+        } else {
+            card.classList.add("hidden");
+        }
+    });
+}
+
+loadImages();
+</script>
 
 </body>
 </html>
